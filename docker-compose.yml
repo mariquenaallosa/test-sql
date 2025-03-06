@@ -1,0 +1,27 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./data_init.sql:/docker-entrypoint-initdb.d/data_init.sql
+      - ./data_seed.sql:/docker-entrypoint-initdb.d/data_seed.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+
+  adminer:
+    image: adminer
+    container_name: adminer_container
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:
