@@ -3,7 +3,7 @@
 Este proyecto configura un entorno de base de datos MySQL usando Docker y Docker Compose. Además, incluye Adminer como herramienta de administración de base de datos.
 
 ## 📂 Estructura del Proyecto
-'''plaintext
+```plaintext
 project-root/
 │── docker-compose.yml   # Configuración de Docker Compose
 │── .env                 # Variables de entorno (credenciales)
@@ -11,7 +11,7 @@ project-root/
 │── data_seed.sql        # Script SQL para insertar datos de prueba
 │── queries.sql          # Conjunto de consultas SQL organizadas
 │── README.md            # Documentación del proyecto
-'''
+```
 
 ## 🚀 Configuración y Uso
 
@@ -21,24 +21,24 @@ project-root/
 
 ### 2️⃣ **Variables de Entorno**
 Configurar las credenciales en un archivo '.env':
-'''ini
+```ini
 MYSQL_ROOT_PASSWORD=root
 MYSQL_DATABASE=testdb
 MYSQL_USER=user
 MYSQL_PASSWORD=password
-'''
+```
 
 ### 3️⃣ **Levantar los Contenedores**
 Ejecutar el siguiente comando:
-'''sh
+```sh
 docker-compose up -d
-'''
+```
 
 ### 4️⃣ **Verificar los Contenedores**
 Para asegurarte de que están corriendo:
-'''sh
+```sh
 docker ps
-'''
+```
 
 ### 5️⃣ **Acceder a Adminer**
 Abre el navegador y ve a: [http://localhost:8080](http://localhost:8080)
@@ -54,10 +54,9 @@ Abre el navegador y ve a: [http://localhost:8080](http://localhost:8080)
 - Usa un volumen persistente para la base de datos.
 - Configura un 'healthcheck' para MySQL.
 
-### 'init.sql'
+### 'data_init.sql'
 - Crea la base de datos 'testdb'.
-- Define las tablas 'products' y 'product_option'.
-- Inserta datos de prueba si no existen.
+- Define las tablas necesarias.
 
 ### 'data_seed.sql'
 - Inserta datos de prueba en las tablas creadas en 'init.sql'.
@@ -68,17 +67,17 @@ Abre el navegador y ve a: [http://localhost:8080](http://localhost:8080)
 ## 🛠 Comandos Útiles
 
 📌 **Ver logs de MySQL**:
-'''sh
+```sh
 docker-compose logs -f mysql
-'''
+```
 📌 **Detener los contenedores**:
-'''sh
+```sh
 docker-compose down
-'''
+```
 📌 **Eliminar los volúmenes y contenedores**:
-'''sh
+```sh
 docker-compose down -v
-'''
+```
 
 ## 🔍 Consultas SQL
 
@@ -86,6 +85,8 @@ docker-compose down -v
 Las consultas SQL se encuentran en el archivo `queries.sql` en la raíz del proyecto.
 
 ### Ejecución de las Consultas
+
+#### Usando Adminer
 Para ejecutar las consultas SQL de manera sencilla, sigue estos pasos:
 
 1. **Accede a Adminer:**
@@ -102,6 +103,32 @@ Para ejecutar las consultas SQL de manera sencilla, sigue estos pasos:
    - Ve a la pestaña `SQL Command` o `Comando SQL`.
    - Copia y pega las consultas desde el archivo `queries.sql` y haz clic en `Execute` o `Ejecutar`.
 
+#### Usando la Consola
+También puedes ejecutar las consultas SQL desde la consola. Sigue estos pasos:
+
+1. **Accede al contenedor de MySQL:**
+   ```sh
+   docker exec -it <nombre_del_contenedor_mysql> bash
+   ```
+
+2. **Conéctate a la base de datos MySQL:**
+   ```sh
+   mysql -u user -p
+   ```
+
+3. **Selecciona la base de datos:**
+   ```sql
+   USE testdb;
+   ```
+
+4. **Ejecuta las consultas copiando y pegando desde `queries.sql`:**
+   ```sql
+   -- Ejemplo de consulta
+   SELECT id, name, short_description, long_description
+   FROM products
+   WHERE short_code <> 'X12345';
+   ```
+
 ### Ejemplo de Consulta
 ```sql
 -- Obtener los valores “id”, "name", "short_description" y "long_description" de los productos 
@@ -109,3 +136,4 @@ Para ejecutar las consultas SQL de manera sencilla, sigue estos pasos:
 SELECT id, name, short_description, long_description
 FROM products
 WHERE short_code <> 'X12345';
+```
