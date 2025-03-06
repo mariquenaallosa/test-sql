@@ -4,7 +4,7 @@ Este proyecto configura un entorno de base de datos MySQL usando Docker y Docker
 
 ## 📂 Estructura del Proyecto
 ```plaintext
-project-root/
+/
 │── docker-compose.yml   # Configuración de Docker Compose
 │── .env                 # Variables de entorno (credenciales)
 │── data_init.sql        # Script SQL de inicialización
