@@ -19,7 +19,14 @@ Este proyecto configura un entorno de base de datos MySQL usando Docker y Docker
 - Tener instalado [Docker](https://www.docker.com/)
 - Tener instalado [Docker Compose](https://docs.docker.com/compose/install/)
 
-### 2️⃣ **Variables de Entorno**
+### 2️⃣ **Clonar repositorio**
+
+```sh
+   git clone https://github.com/mariquenaallosa/test-sql.git
+   cd test-sql
+```
+
+### 3️⃣ **Variables de Entorno**
 Configurar las credenciales en un archivo '.env':
 ```ini
 MYSQL_ROOT_PASSWORD=root
@@ -28,19 +35,19 @@ MYSQL_USER=user
 MYSQL_PASSWORD=password
 ```
 
-### 3️⃣ **Levantar los Contenedores**
+### 4️⃣ **Levantar los Contenedores**
 Ejecutar el siguiente comando:
 ```sh
 docker-compose up -d
 ```
 
-### 4️⃣ **Verificar los Contenedores**
+### 5️⃣ **Verificar los Contenedores**
 Para asegurarte de que están corriendo:
 ```sh
 docker ps
 ```
 
-### 5️⃣ **Acceder a Adminer**
+### 6️⃣ **Acceder a Adminer**
 Abre el navegador y ve a: [http://localhost:8080](http://localhost:8080)
 - **Servidor:** 'mysql'
 - **Usuario:** 'user'
