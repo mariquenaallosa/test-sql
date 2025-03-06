@@ -59,7 +59,7 @@ Abre el navegador y ve a: [http://localhost:8080](http://localhost:8080)
 - Define las tablas necesarias.
 
 ### 'data_seed.sql'
-- Inserta datos de prueba en las tablas creadas en 'init.sql'.
+- Inserta datos de prueba en las tablas creadas en 'data_init.sql'.
 
 ### 'queries.sql'
 - Contiene un conjunto de consultas SQL organizadas para interactuar con la base de datos.
@@ -128,12 +128,3 @@ También puedes ejecutar las consultas SQL desde la consola. Sigue estos pasos:
    FROM products
    WHERE short_code <> 'X12345';
    ```
-
-### Ejemplo de Consulta
-```sql
--- Obtener los valores “id”, "name", "short_description" y "long_description" de los productos 
--- cuyo 'shortCode' sea diferente a 'X12345'.
-SELECT id, name, short_description, long_description
-FROM products
-WHERE short_code <> 'X12345';
-```
